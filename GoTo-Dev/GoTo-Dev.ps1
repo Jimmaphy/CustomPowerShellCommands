@@ -2,7 +2,7 @@
 ### Description:    GoTo-Dev allows you to navigate to the development folder.
 ###                 When the SubFolder parameter is specified, that folder will be opened.
 ### Author:         Jimmaphy
-### Version:        1.0 (2024-10-28)
+### Version:        1.1 (2024-10-31)
 
 
 param([string]$SubFolder)
@@ -11,8 +11,8 @@ param([string]$SubFolder)
 # If provided, check whether the specified subfolder is valid
 $basePath = "D:\"
 $validSubFolders = @("Archive", "External", "Resources", "Source", "Temporary");
-$selectedFolder = $validSubFolders 
-    | Where-Object { $_ -ieq $SubFolder }
+$selectedFolder = $validSubFolders
+    | Where-Object { $SubFolder -like "*$_*" }
     | Select-Object -First 1
 
 # If no subfolder is specified, navigate to the base path
